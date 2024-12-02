@@ -13,10 +13,9 @@ def check_report(numbers):
   return True
 
 
-def check_report_dampened(numbers):
+def check_report_dampened(numbers, dampened = False):
   i = 0
   slope = 0
-  dampened = False
   while i < len(numbers) - 1:
     [ok, slope] = check_pair(numbers[i], numbers[i + 1], slope)
     if ok:
@@ -33,6 +32,8 @@ def check_report_dampened(numbers):
       dampened = True
       i += 2
       continue
+    print("not dampened!", numbers)
+    print("i:", i, "len:", len(numbers))
     return False
   return True
 
@@ -48,4 +49,4 @@ def check_pair(a, b, slope):
 
 
 def get_sign(n):
-  return 1 if n > 0 else -1
+  return 1 if n >= 0 else -1
