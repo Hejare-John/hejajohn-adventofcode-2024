@@ -24,19 +24,25 @@ def check_report_dampened(numbers, dampened = False):
     # check bad level
     if dampened:
       return False
-    # we can remove the last level
     if i >= len(numbers) - 2:
-      return True
+      return False
     [ok, slope] = check_pair(numbers[i], numbers[i + 2], slope)
     if ok:
       dampened = True
       i += 2
       continue
-    print("not dampened!", numbers)
-    print("i:", i, "len:", len(numbers))
     return False
   return True
 
+
+def check_report_recursive(numbers):
+  if check_report(numbers):
+    return True
+  for i in range(len(numbers)):
+    sub_numbers = numbers[:i] + numbers[i + 1:]
+    if check_report(sub_numbers):
+      return True
+  return False
 
 def check_pair(a, b, slope):
   diff = b - a

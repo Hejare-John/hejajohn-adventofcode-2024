@@ -12,7 +12,7 @@ for line in input.readlines():
   numbersStr = re.split("\\s+", line.strip())
   numbers = [int(x) for x in numbersStr]
 
-  if report.check_report_dampened(numbers) or report.check_report_dampened(numbers[1:], True):
+  if report.check_report_recursive(numbers):
     safe_reports += 1
 
 print("safe reports:", safe_reports)
