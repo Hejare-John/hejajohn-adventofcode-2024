@@ -9,14 +9,18 @@ class Permutator:
     return self
 
   def __next__(self):
+    if self.slots == 0:
+      raise StopIteration
+    self._iteration += 1
+    if self._iteration == 1:
+      return self.permutation
     for i in range(self.slots):
       self.permutation[i] += 1
       if self.permutation[i] < self.size:
         break
       self.permutation[i] = 0
-    if self._iteration > 0 and sum(self.permutation) == 0:
+    if sum(self.permutation) == 0:
       raise StopIteration
-    self._iteration += 1
     return self.permutation
 
 
