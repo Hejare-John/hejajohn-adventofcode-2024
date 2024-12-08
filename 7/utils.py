@@ -34,8 +34,30 @@ def calculate_equation_plus_times(equation, permutation):
   return res
 
 
-def find_solution(equation, result):
+def calculate_equation_plus_times_concat(equation, permutation, result):
+  res = equation[0]
+  for i, p in enumerate(permutation):
+    e = equation[i + 1]
+    if p == 0:
+      res += e
+    elif p == 1:
+      res *= e
+    else:
+      res = res * pow(10, len(str(e))) + e
+    if res > result:
+      return res
+  return res
+
+
+def find_solution_one(equation, result):
   for permutation in iter(Permutator(len(equation) - 1, 2)):
     if result == calculate_equation_plus_times(equation, permutation):
+      return True
+  return False
+
+
+def find_solution_two(equation, result):
+  for permutation in iter(Permutator(len(equation) - 1, 3)):
+    if result == calculate_equation_plus_times_concat(equation, permutation, result):
       return True
   return False

@@ -8,7 +8,7 @@ for line in input.readlines():
   [result_str, equation_str] = line.strip().split(": ")
   result = int(result_str)
   equation = [int(x) for x in equation_str.split(" ")]
-  if find_solution_one(equation, result):
+  if find_solution_two(equation, result):
     result_sum += result
 
 print("result sum:", result_sum)
